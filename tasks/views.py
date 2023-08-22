@@ -22,3 +22,20 @@ def index(request):
         "form": form,
     }
     return render(request, "list.html", context)
+
+
+def update(request, slug):
+    task = Task.objects.get(slug=slug)
+
+    if request.method == "POST":
+        form = TaskFrom(request.POST, instance=task)
+        if form.is_valid():
+            form.save()
+    else:
+        form = TaskFrom(instance=task)
+
+    context = {
+        "task": task,
+        "form": form,
+    }
+    return render(request, "update.html", context)

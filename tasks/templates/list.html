@@ -6,5 +6,8 @@
 </form>
 
 {% for task in tasks %}
-<p>{{task}}</p>
+<p>
+  {{task}}
+  <a href="{% url 'index:update' task.slug %}">update</a>
+</p>
 {% endfor %}
