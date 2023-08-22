@@ -7,7 +7,12 @@
 
 {% for task in tasks %}
 <p>
-  {{task}}
+  {% if task.completed == True %}
+  <strike>{{task}}</strike>
+  {% else %}
+  <span>{{task}}</span>
+  {% endif %}
+
   <a href="{% url 'index:update' task.slug %}">update</a>
   <a href="{% url 'index:delete' task.slug %}">delete</a>
 </p>

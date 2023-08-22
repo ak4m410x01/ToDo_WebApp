@@ -31,6 +31,7 @@ def update(request, slug):
         form = TaskFrom(request.POST, instance=task)
         if form.is_valid():
             form.save()
+            return redirect("/")
     else:
         form = TaskFrom(instance=task)
 
