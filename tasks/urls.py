@@ -5,5 +5,5 @@ app_name = "tasks"
 
 urlpatterns = [
     path("", views.index, name="index"),
-    path("<str:slug>/", views.update, name="update"),
+    path("<str:slug>/update", views.update, name="update"),
 ]
