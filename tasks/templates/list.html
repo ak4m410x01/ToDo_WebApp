@@ -1,19 +1,78 @@
-<h2>Tasks List</h2>
+<link
+  rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+  crossorigin="anonymous"
+/>
 
-<form action=" {% url 'index:home' %}" method="post">
-  {% csrf_token %} {{form.title}}
-  <button type="submit">save</button>
-</form>
+<style>
+  body {
+    background-color: #638cb8;
+  }
 
-{% for task in tasks %}
-<p>
-  {% if task.completed == True %}
-  <strike>{{task}}</strike>
-  {% else %}
-  <span>{{task}}</span>
-  {% endif %}
+  input,
+  button {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+  }
 
-  <a href="{% url 'index:update' task.slug %}">update</a>
-  <a href="{% url 'index:delete' task.slug %}">delete</a>
-</p>
-{% endfor %}
+  button::placeholder {
+    color: #d3d3d3;
+  }
+
+  .submit {
+    background-color: #6ba3e8;
+  }
+
+  .center-column {
+    width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: 6px 2px 30px 0px rgba(0, 0, 0, 0.75);
+  }
+
+  .item-row {
+    background-color: #906abd;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 16px;
+    box-shadow: 0px -1px 10px -4px rgba(0, 0, 0, 0.75);
+  }
+
+  .btn-danger {
+    background-color: #ffae19;
+    border-color: #e59400;
+  }
+</style>
+
+<div class="center-column">
+  <form method="POST" action="/">
+    {% csrf_token %} {{form.title}}
+    <button class="btn btn-info" type="submit">Add Task</button>
+  </form>
+
+  <div class="todo-list">
+    {% for task in tasks %}
+    <div class="item-row">
+      <a class="btn btn-sm btn-info" href="{% url 'index:update' task.slug %}"
+        >Update</a
+      >
+      <a class="btn btn-sm btn-danger" href="{% url 'index:delete' task.slug %}"
+        >Delete</a
+      >
+
+      {% if task.completed == True %}
+      <strike>{{task}}</strike>
+      {% else %}
+      <span>{{task}}</span>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+</div>

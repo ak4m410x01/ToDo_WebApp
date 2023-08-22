@@ -1,6 +1,7 @@
 <h2>Are you sure to delete {{task.title}} ?</h2>
 
 <a href="{% url 'index:home' %}">Cancel</a>
+<br />
 <form method="POST">
   {% csrf_token %} {{form}}
   <button type="submit">Confirm</button>
