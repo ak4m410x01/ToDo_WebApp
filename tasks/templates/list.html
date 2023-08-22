@@ -1,6 +1,6 @@
 <h2>Tasks List</h2>
 
-<form action="/" method="post">
+<form action=" {% url 'index:home' %}" method="post">
   {% csrf_token %} {{form.title}}
   <button type="submit">save</button>
 </form>
@@ -9,5 +9,6 @@
 <p>
   {{task}}
   <a href="{% url 'index:update' task.slug %}">update</a>
+  <a href="{% url 'index:delete' task.slug %}">delete</a>
 </p>
 {% endfor %}

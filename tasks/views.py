@@ -39,3 +39,16 @@ def update(request, slug):
         "form": form,
     }
     return render(request, "update.html", context)
+
+
+def delete(request, slug):
+    task = Task.objects.get(slug=slug)
+
+    if request.method == "POST":
+        task.delete()
+        return redirect("/")
+
+    context = {
+        "task": task,
+    }
+    return render(request, "delete.html", context)
